@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace WorkerLibrary
 {
-    interface IWorker
+    interface IComparable
     {
-        string SecondName { get; set; }
-        int Hours { get; set; }
-        int Salary { get; }        
+        int CompareTo(object obj);
     }
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace WorkerLibrary
 {
-    interface IWorker
+    interface ICloneable
     {
-        string SecondName { get; set; }
-        int Hours { get; set; }
-        int Salary { get; }        
+        object Clone();
     }
 }

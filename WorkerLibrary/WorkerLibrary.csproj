@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WorkerPerHour.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="IComparable.cs" />
+    <Compile Include="TableForWorkers.cs" />
+    <Compile Include="WorkerSalaryPerHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IWorker.cs" />
+    <Compile Include="WorkerSalaryScale.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
