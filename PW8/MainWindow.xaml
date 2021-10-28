@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrototypePW8"
         mc:Ignorable="d"
-        Title="PW8" Height="390" Width="800" ResizeMode="CanResize" MinWidth="700" MinHeight="390">
+        Title="PW8" Height="428" Width="800" ResizeMode="CanResize" MinWidth="700" MinHeight="390">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -23,36 +23,8 @@
             <MenuItem Header="Exit" Click="Exit_Click" Focusable="False"/>
             <MenuItem Header="About Program" Click="AboutProgram_Click" Focusable="False"/>
         </Menu>
-        <DataGrid x:Name="Table" Margin="10,23,350,34" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300"/>
-        <GroupBox Header="Data Control" HorizontalAlignment="Right" Height="136" Margin="0,23,10,0" VerticalAlignment="Top" Width="165">
-            <GroupBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#E28F65FF" Offset="1"/>
-                    <GradientStop Color="#B2B4ACFF"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <Grid>
-                <Button Content="Save Data" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="133"/>
-                <Button Content="Open Data File" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="133"/>
-                <Button Content="Compare Data" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="133"/>
-                <Button Content="Copy Data" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="133"/>
-
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Basic Oppotunities" HorizontalAlignment="Right" Height="111" Margin="0,23,180,0" VerticalAlignment="Top" Width="151">
-            <GroupBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#E28F65FF" Offset="1"/>
-                    <GradientStop Color="#B2B4ACFF"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <Grid>
-                <Button Content="Support" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="117"/>
-                <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="117" IsCancel="True" Click="Exit_Click"/>
-                <Button x:Name="AboutProgram" Content="About Program" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="117" Click="AboutProgram_Click"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="159" Margin="0,164,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
+        <DataGrid x:Name="Table" Margin="10,23,350,10" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300" IsReadOnly="True"/>
+        <GroupBox Header="Basic Oppotunities" HorizontalAlignment="Right" Height="62" Margin="0,324,10,0" VerticalAlignment="Top" Width="311">
             <GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#E2A42AF9" Offset="1"/>
@@ -60,14 +32,41 @@
                 </LinearGradientBrush>
             </GroupBox.Background>
             <Grid>
-                <CheckBox x:Name="CheckSalary" Content="Salary Per Hour" HorizontalAlignment="Left" Margin="177,47,0,0" VerticalAlignment="Top" Width="112" ToolTip="If your worker have salary per hour then you must click here for activate oppotunity to add him"/>
-                <Button x:Name="AddWorker" Content="Add Worker" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="279" Click="AddWorker_Click"/>
+                <Button Content="Support" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78"/>
+                <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="64" IsCancel="True" Click="Exit_Click"/>
+                <Button x:Name="AboutProgram" Content="About Program" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="127" Click="AboutProgram_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="296" Margin="0,23,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
+            <GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#E28F65FF" Offset="1"/>
+                    <GradientStop Color="#B2B4ACFF"/>
+                </LinearGradientBrush>
+            </GroupBox.Background>
+            <Grid>
+                <Button x:Name="AddWorker" Content="Add Worker" HorizontalAlignment="Left" Margin="177,41,0,0" VerticalAlignment="Top" Width="112" Click="AddWorker_Click" Style="{DynamicResource Windows11}" Height="23"/>
                 <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
                 <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"/>
                 <Label Content="Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="Hours:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label Content="Salary/SalaryPerHour:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="AllSalary" HorizontalAlignment="Left" Height="23" Margin="134,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" MaxLength="10"/>
+                <GroupBox Header="Pay Salary" HorizontalAlignment="Left" Height="98" Margin="3,69,0,-54" VerticalAlignment="Top" Width="296" BorderBrush="#FF00FF0C">
+                    <Grid>
+                        <TextBox x:Name="AllSalary" HorizontalAlignment="Left" Height="23" Margin="139,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" MaxLength="10"/>
+                        <Label Content="Salary/SalaryPerHour:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="CheckSalary" Content="Salary Per Hour" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="112" ToolTip="If your worker have salary per hour then you must click here for activate oppotunity to add him"/>
+                        <Button Content="Pay" HorizontalAlignment="Left" Margin="139,38,0,0" VerticalAlignment="Top" Width="135"/>
+
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Compare Salary And Clone Worker" HorizontalAlignment="Left" Height="100" Margin="3,172,0,0" VerticalAlignment="Top" Width="296" BorderBrush="#FFF300FF">
+                    <Grid>
+                        <Button Content="Compare Salaries" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="126"/>
+                        <Button Content="Clone Worker Info" HorizontalAlignment="Left" Margin="141,41,0,0" VerticalAlignment="Top" Width="133"/>
+                        <Label Content="Other Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="OtherSecondName" HorizontalAlignment="Left" Height="23" Margin="141,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133"/>
+                    </Grid>
+                </GroupBox>
             </Grid>
         </GroupBox>
     </Grid>

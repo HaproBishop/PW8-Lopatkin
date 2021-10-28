@@ -41,7 +41,7 @@ namespace PrototypePW8
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (Table.Items.IndexOf(SecondName.Text) != -1) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
                 bool ProveHours = int.TryParse(Hours.Text, out int hours);
@@ -51,8 +51,14 @@ namespace PrototypePW8
                     if (CheckSalary.IsChecked == true)
                     {
                         workersalaryperhour.AddWorkerInformation(SecondName.Text, hours, allsalary);
+                        Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;
                     }
-                    else workersalaryscale.AddWorkerInformation(SecondName.Text, hours, allsalary);
+                    else
+                    { 
+                        workersalaryscale.AddWorkerInformation(SecondName.Text, hours, allsalary);
+                        Table.ItemsSource = TableForWorkers.AddWorker(workersalaryscale).DefaultView;
+                    }
+                    
                 }
                 else MessageBox.Show("You entered uncorrectly values! Try again, please!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }

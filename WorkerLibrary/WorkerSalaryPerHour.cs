@@ -27,5 +27,9 @@ namespace WorkerLibrary
         {
             return new WorkerSalaryPerHour(SecondName, Hours, SalaryPerHour);
         }
+        public override void PaySalary(int salaryperhour)
+        {
+            SalaryPerHour = salaryperhour;
+        }
     }
 }

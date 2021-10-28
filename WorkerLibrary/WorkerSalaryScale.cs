@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorkerLibrary
 {
-    public class WorkerSalaryScale:IWorker, IComparable, ICloneable
+    public class WorkerSalaryScale : IWorker, IComparable, ICloneable
     {
         int _hours, _salary;
         public string SecondName { get; set; }
@@ -27,7 +27,6 @@ namespace WorkerLibrary
         {
             SecondName = secondname;
             Hours = hours;
-            Salary = salary;
         }
         public int CompareTo(object obj)
         {
@@ -39,6 +38,10 @@ namespace WorkerLibrary
         public virtual object Clone()
         {
             return new WorkerSalaryScale(SecondName, Hours, Salary);
+        }
+        public virtual void PaySalary(int salary)
+        {
+            Salary = _salary;
         }
     }
 }
