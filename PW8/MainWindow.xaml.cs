@@ -44,24 +44,45 @@ namespace PrototypePW8
             if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
-                bool ProveHours = int.TryParse(Hours.Text, out int hours);
-                bool ProveAllSalary = int.TryParse(AllSalary.Text, out int allsalary);
-                if (ProveHours == true && ProveAllSalary == true)
+                bool ProveHours = int.TryParse(Hours.Text, out int hours);               
+                if (ProveHours)
                 {
                     if (CheckSalary.IsChecked == true)
                     {
-                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours, allsalary);
+                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours);
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;
                     }
                     else
                     { 
-                        workersalaryscale.AddWorkerInformation(SecondName.Text, hours, allsalary);
+                        workersalaryscale.AddWorkerInformation(SecondName.Text, hours);
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryscale).DefaultView;
                     }
                     
                 }
                 else MessageBox.Show("You entered uncorrectly values! Try again, please!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void CompareSalaries_Click(object sender, RoutedEventArgs e)
+        {
+            if (SecondName.Text.ToString() != OtherSecondName.Text.ToString())
+            {
+                
+            }
+            else MessageBox.Show("Нельзя сравнить зарплату одного и того же человека!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void CloneWorkerInfo_Click(object sender, RoutedEventArgs e)
+        {
+            if (SecondName.Text.ToString() != OtherSecondName.Text.ToString())
+            {
+                WorkerSalaryScale nows = (WorkerSalaryScale)TableForWorkers.CloneWorkerInfo(SecondName.Text);
+            }
+        }
+
+        private void Pay_Click(object sender, RoutedEventArgs e)
+        {
+            if()
         }
     }
 }

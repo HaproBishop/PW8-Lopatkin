@@ -23,7 +23,7 @@ namespace WorkerLibrary
         {
             return value >= 0;
         }
-        public virtual void AddWorkerInformation(string secondname, int hours, int salary)
+        public void AddWorkerInformation(string secondname, int hours)
         {
             SecondName = secondname;
             Hours = hours;

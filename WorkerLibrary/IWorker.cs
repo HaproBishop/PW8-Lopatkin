@@ -10,6 +10,7 @@ namespace WorkerLibrary
     {
         string SecondName { get; set; }
         int Hours { get; set; }
-        int Salary { get; }        
+        int Salary { get; }
+        void PaySalary();
     }
 }

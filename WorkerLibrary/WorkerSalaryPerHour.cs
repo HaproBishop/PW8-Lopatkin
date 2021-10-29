@@ -16,12 +16,6 @@ namespace WorkerLibrary
         {
             SalaryPerHour = salaryperhour;
         }        
-        public override void AddWorkerInformation(string secondname, int hours, int salaryperhour)
-        {
-            SecondName = secondname;
-            Hours = hours;
-            SalaryPerHour = salaryperhour;
-        }
 
         public override object Clone()
         {
