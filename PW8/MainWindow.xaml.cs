@@ -24,7 +24,7 @@ namespace PrototypePW8
         public MainWindow()
         {
             InitializeComponent();
-            Table.ItemsSource = TableForWorkers.CreateTableForWorker().DefaultView;
+            Table.ItemsSource = TableForWorkers.CreateTableForWorker().DefaultView; //Добавление шаблона таблицы
         }
         WorkerSalaryScale workersalaryscale = new WorkerSalaryScale();
         WorkerSalaryPerHour workersalaryperhour = new WorkerSalaryPerHour();
@@ -42,15 +42,15 @@ namespace PrototypePW8
         private void AddWorker_Click(object sender, RoutedEventArgs e)
         {
             bool ProveHours = int.TryParse(Hours.Text, out int hours);
-            if (ProveHours)
+            if (ProveHours)//Использована упрощенная запись для проверки значения bool(true - двигаемся дальше по коду)
             {
                 if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     if (CheckSalary.IsChecked == true)
                     {
-                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours);
-                        Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;
+                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours);//Использование метода для заполнения полей значениями
+                        Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;//Занесение информации о работнике в таблицу
                     }
                     else
                     {
@@ -66,19 +66,19 @@ namespace PrototypePW8
         private void CompareSalaries_Click(object sender, RoutedEventArgs e)
         {
             if ((SecondName.Text.ToString() != OtherSecondName.Text.ToString()) && TableForWorkers.ProveSecondName(SecondName.Text) && TableForWorkers.ProveSecondName(OtherSecondName.Text))
-            {
+            {//Проверка на равенство друх фамилий, а также проверка на наличие таких фамилий
                 int result;
                 string answer;
                 WorkerSalaryScale otherworkersalaryscale = new WorkerSalaryScale();
                 WorkerSalaryPerHour otherworkersalaryperhour = new WorkerSalaryPerHour(); ;
-                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
-                TableForWorkers.GiveWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);
-                if (SecondName.Text == workersalaryperhour.SecondName)
+                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);//Получение информации из таблицы в объект
+                TableForWorkers.GiveWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);//Для второго объекта на сравнение
+                if (SecondName.Text == workersalaryperhour.SecondName)//Сопоставление текущего имени с добавленным в объект
                     if (OtherSecondName.Text == otherworkersalaryperhour.SecondName)
                     {
-                        result = workersalaryperhour.CompareTo(otherworkersalaryperhour);
+                        result = workersalaryperhour.CompareTo(otherworkersalaryperhour);//Занесение результата сравнения
                         answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryperhour.Salary, otherworkersalaryperhour.Salary);
-                    }
+                    }//Внесение данных результата, сделанных в другом методе, в answer
                     else
                     {
                         result = workersalaryperhour.CompareTo(otherworkersalaryscale);
@@ -94,7 +94,7 @@ namespace PrototypePW8
                     result = workersalaryscale.CompareTo(otherworkersalaryscale);
                     answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryscale.Salary, otherworkersalaryscale.Salary);
                 }
-                WorkerWithMoreSalary.Text = answer;
+                WorkerWithMoreSalary.Text = answer;//Вывод результата сравнения в поле для уведомления пользователя о результатах
             }
             else MessageForUserAboutSecondNames();
         }
@@ -102,21 +102,21 @@ namespace PrototypePW8
         private void CloneWorkerInfo_Click(object sender, RoutedEventArgs e)
         {
             if ((SecondName.Text != "") && (OtherSecondName.Text != "") && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
-            {
+            {//Проверка на наличие пустых полей и другого имени в таблице
                 TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                 WorkerSalaryScale cloneworkersalaryscale;
                 WorkerSalaryPerHour cloneworkersalaryperhour;
-                if (workersalaryscale.SecondName == SecondName.Text)
+                if (workersalaryscale.SecondName == SecondName.Text)//Сравнение для правильного приведения
                 {
-                    cloneworkersalaryscale = (WorkerSalaryScale)workersalaryscale.Clone();
-                    cloneworkersalaryscale.SecondName = OtherSecondName.Text;
+                    cloneworkersalaryscale = (WorkerSalaryScale)workersalaryscale.Clone();//Выполнение клонирования объекта и конвертация в класс
+                    cloneworkersalaryscale.SecondName = OtherSecondName.Text;//Присваивание нового имени
                     Table.ItemsSource = TableForWorkers.AddWorker(cloneworkersalaryscale).DefaultView;
                 }
                 else
                 {
                     cloneworkersalaryperhour = (WorkerSalaryPerHour)workersalaryperhour.Clone();
                     cloneworkersalaryperhour.SecondName = OtherSecondName.Text;
-                    Table.ItemsSource = TableForWorkers.AddWorker(cloneworkersalaryperhour).DefaultView;
+                    Table.ItemsSource = TableForWorkers.AddWorker(cloneworkersalaryperhour).DefaultView;//Внесение объекта в таблицу(его данных)
                 }
             }
             else MessageForUser();
@@ -129,7 +129,7 @@ namespace PrototypePW8
                 if (TableForWorkers.ProveSecondName(SecondName.Text))
                 {
                     TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
-                    if (workersalaryscale.SecondName == SecondName.Text)
+                    if (workersalaryscale.SecondName == SecondName.Text)//Проверка для правильного ориентира класса
                     {
                         workersalaryscale.PaySalary(value);
                         Table.ItemsSource = TableForWorkers.UpdateWorker(SecondName.Text, workersalaryscale).DefaultView;
@@ -144,6 +144,15 @@ namespace PrototypePW8
             }
             else MessageForUser();
         }
+        /// <summary>
+        /// Используется для сборки результата в сообщение в виде строки пользователю
+        /// </summary>
+        /// <param name="result">Результат(-1, 0, 1)</param>
+        /// <param name="secondname">Фамилия работника</param>
+        /// <param name="othersecondname">Фамилия другого работника</param>
+        /// <param name="salary">Зарплата первого работника</param>
+        /// <param name="othersalary">Зарплата второго работника</param>
+        /// <returns>Строка с результатом</returns>
         private string CompareResults(int result, string secondname, string othersecondname, int salary, int othersalary)
         {
             if (result == 1) return $"{secondname} have more salary - {salary}";
@@ -152,7 +161,7 @@ namespace PrototypePW8
         }
 
         private void SecondName_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        {//Для очистки значений при изменении начальных значений
             Hours.Clear();
             WorkerWithMoreSalary.Clear();
         }
@@ -161,12 +170,12 @@ namespace PrototypePW8
         {
             WorkerWithMoreSalary.Clear();
         }
-        private void MessageForUser()
+        private void MessageForUser()//Используется для упрощенного написания кода
         {
             MessageBox.Show("Your values are not correct! Please, enter supported values! Read \"Support\" for more details!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void SecondName_GotFocus(object sender, RoutedEventArgs e)
+        private void SecondName_GotFocus(object sender, RoutedEventArgs e)//Изменение кнопки для дефолта Enter
         {
             Pay.IsDefault = false;
             AddWorker.IsDefault = true;
@@ -178,7 +187,7 @@ namespace PrototypePW8
             AddWorker.IsDefault = false;
         }
 
-        private void Support_Click(object sender, RoutedEventArgs e)
+        private void Support_Click(object sender, RoutedEventArgs e)//Расписывание об особенностях программы
         {
             MessageBox.Show("1) You can enter Second Name with length - 20\n2) You can enter Salary(SalaryPerHour) with length - 8, hours - 4\n3) " +
                 "You must enter new second name into string \"Other Second Name\" for clone data of other person\n4) " +
@@ -188,9 +197,9 @@ namespace PrototypePW8
 
         private void DeleteWorker_Click(object sender, RoutedEventArgs e)
         {
-            if ((SecondName.Text != "") && TableForWorkers.ProveSecondName(SecondName.Text))
+            if ((SecondName.Text != "") && TableForWorkers.ProveSecondName(SecondName.Text))//Проверка на пустоту и наличие фамилии
             {
-                TableForWorkers.DeleteWorker(SecondName.Text);
+                TableForWorkers.DeleteWorker(SecondName.Text);//Удаление из таблицы значения
             }
             else MessageForUserAboutSecondNames();
         }

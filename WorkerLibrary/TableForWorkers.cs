@@ -12,9 +12,9 @@ namespace WorkerLibrary
     //для визуализации данных 
     public static class TableForWorkers
     {
-        private static DataTable res;
-        private static int j = 0;
-        //Метод для одномерного массива
+        private static DataTable res;//Таблица с данными
+        private static int j = 0;//Порядковый номер
+        //Создание шаблона
         public static DataTable CreateTableForWorker()
         {            
             res = new DataTable();
@@ -25,7 +25,7 @@ namespace WorkerLibrary
             res.Columns.Add("Salary Per Hour", typeof(string));           
             return res;
         }
-        public static DataTable AddWorker(WorkerSalaryPerHour worker)
+        public static DataTable AddWorker(WorkerSalaryPerHour worker)//Добавление работника
         {
             var row = res.NewRow();
             row[0] = ++j;
@@ -75,9 +75,9 @@ namespace WorkerLibrary
             for (int i = 0; i < res.Rows.Count; i++)
             {
                 row = res.Rows[i];
-                if ((string)row[1] == secondname) res.Rows[i].Delete();
+                if ((string)row[1] == secondname) res.Rows[i].Delete();//Сравнение фамилии в таблице(приведено к string из DataRow; Данные получены из таблицы
             }
-            j--;
+            j--;//Уменьшение порядка из-за удаления строки в таблице
             return res;
         }
         public static DataTable UpdateWorker(string secondname, WorkerSalaryPerHour worker)
@@ -116,12 +116,12 @@ namespace WorkerLibrary
                     news[2] = row[2];
                     news[3] = row[3];
                     news[4] = row[4];
-                    res.Rows[i].ItemArray = news;                    
+                    res.Rows[i].ItemArray = news;     //Изменяем значения в строке               
                 }
             }
             return res;
         }
-        public static bool ProveSecondName(string secondname)
+        public static bool ProveSecondName(string secondname)//Проверка на наличие фамилии в таблице
         {
             DataRow row; 
             for (int i = 0; i < res.Rows.Count; i++)
@@ -140,7 +140,7 @@ namespace WorkerLibrary
             ReturnObject(secondname, ref workerperhour, ref worker);
         }
         private static void ReturnObject(string secondname, ref WorkerSalaryPerHour workerperhour, ref WorkerSalaryScale worker)
-        {
+        {//Получение данных из таблицы посредством поиска строки с нужной фамилией и присваивание значения относительно наличия строки "unknown"
             if (ProveSecondName(secondname))
             {
                 DataRow row;
