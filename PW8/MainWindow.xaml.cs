@@ -41,11 +41,11 @@ namespace PrototypePW8
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            else
+            bool ProveHours = int.TryParse(Hours.Text, out int hours);
+            if (ProveHours)
             {
-                bool ProveHours = int.TryParse(Hours.Text, out int hours);               
-                if (ProveHours)
+                if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
                 {
                     if (CheckSalary.IsChecked == true)
                     {
@@ -53,36 +53,130 @@ namespace PrototypePW8
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;
                     }
                     else
-                    { 
+                    {
                         workersalaryscale.AddWorkerInformation(SecondName.Text, hours);
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryscale).DefaultView;
                     }
-                    
-                }
-                else MessageBox.Show("You entered uncorrectly values! Try again, please!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    workersalaryscale = new WorkerSalaryScale();
+
+                }                
             }
+            else MessageForUser();
         }
 
         private void CompareSalaries_Click(object sender, RoutedEventArgs e)
         {
-            if (SecondName.Text.ToString() != OtherSecondName.Text.ToString())
+            if ((SecondName.Text.ToString() != OtherSecondName.Text.ToString()) && TableForWorkers.ProveSecondName(SecondName.Text) && TableForWorkers.ProveSecondName(OtherSecondName.Text))
             {
-                
+                int result;
+                string answer;
+                WorkerSalaryScale otherworkersalaryscale = new WorkerSalaryScale();
+                WorkerSalaryPerHour otherworkersalaryperhour = new WorkerSalaryPerHour(); ;
+                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                TableForWorkers.GiveWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);
+                if (SecondName.Text == workersalaryperhour.SecondName)
+                    if (OtherSecondName.Text == otherworkersalaryperhour.SecondName)
+                    {
+                        result = workersalaryperhour.CompareTo(otherworkersalaryperhour);
+                        answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryperhour.Salary, otherworkersalaryperhour.Salary);
+                    }
+                    else
+                    {
+                        result = workersalaryperhour.CompareTo(otherworkersalaryscale);
+                        answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryperhour.Salary, otherworkersalaryscale.Salary);
+                    }
+                else if (OtherSecondName.Text == otherworkersalaryperhour.SecondName)
+                {
+                    result = workersalaryscale.CompareTo(otherworkersalaryperhour);
+                    answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryscale.Salary, otherworkersalaryperhour.Salary);
+                }
+                else
+                {
+                    result = workersalaryscale.CompareTo(otherworkersalaryscale);
+                    answer = CompareResults(result, SecondName.Text, OtherSecondName.Text, workersalaryscale.Salary, otherworkersalaryscale.Salary);
+                }
+                WorkerWithMoreSalary.Text = answer;
             }
-            else MessageBox.Show("Нельзя сравнить зарплату одного и того же человека!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            else MessageBox.Show("Second Names can not be equal!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void CloneWorkerInfo_Click(object sender, RoutedEventArgs e)
         {
-            if (SecondName.Text.ToString() != OtherSecondName.Text.ToString())
+            if ((OtherSecondName.Text != null) && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
             {
-                WorkerSalaryScale nows = (WorkerSalaryScale)TableForWorkers.CloneWorkerInfo(SecondName.Text);
+                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                WorkerSalaryScale cloneworkersalaryscale;
+                WorkerSalaryPerHour cloneworkersalaryperhour;
+                if (workersalaryscale.SecondName == SecondName.Text)
+                {
+                    cloneworkersalaryscale = (WorkerSalaryScale)workersalaryscale.Clone();
+                    cloneworkersalaryscale.SecondName = OtherSecondName.Text;
+                    Table.ItemsSource = TableForWorkers.AddWorker(cloneworkersalaryscale).DefaultView;
+                }
+                else
+                {
+                    cloneworkersalaryperhour = (WorkerSalaryPerHour)workersalaryperhour.Clone();
+                    cloneworkersalaryperhour.SecondName = OtherSecondName.Text;
+                    Table.ItemsSource = TableForWorkers.AddWorker(cloneworkersalaryperhour).DefaultView;
+                }
             }
+            else MessageForUser();
         }
-
         private void Pay_Click(object sender, RoutedEventArgs e)
         {
-            if()
+            bool ProveAllSalary = int.TryParse(AllSalary.Text, out int value);
+            if (ProveAllSalary)
+            {
+                if (TableForWorkers.ProveSecondName(SecondName.Text))
+                {
+                    TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                    if (workersalaryscale.SecondName == SecondName.Text)
+                    {
+                        workersalaryscale.PaySalary(value);
+                        Table.ItemsSource = TableForWorkers.UpdateWorker(SecondName.Text, workersalaryscale).DefaultView;
+                    }
+                    else
+                    {
+                        workersalaryperhour.PaySalary(value);
+                        Table.ItemsSource = TableForWorkers.UpdateWorker(SecondName.Text, workersalaryperhour).DefaultView;
+                    }
+                }
+                else MessageForUser();
+            }
+            else MessageForUser();
+        }
+        private string CompareResults(int result, string secondname, string othersecondname, int salary, int othersalary)
+        {
+            if (result == 1) return $"{secondname} have more salary - {salary}";
+            if(result == -1) return $"{othersecondname} have more salary - {othersalary}";
+            return $"Salaries of {secondname} and {othersecondname} are equal - {salary}";
+        }
+
+        private void SecondName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Hours.Clear();
+            WorkerWithMoreSalary.Clear();
+        }
+
+        private void OtherSecondName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            WorkerWithMoreSalary.Clear();
+        }
+        private void MessageForUser()
+        {
+            MessageBox.Show("Your values are not correct! Please, enter supported values! Read \"Support\" for more details!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void SecondName_GotFocus(object sender, RoutedEventArgs e)
+        {            
+            Pay.IsDefault = false;
+            AddWorker.IsDefault = true;
+        }
+
+        private void AllSalary_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Pay.IsDefault = true;
+            AddWorker.IsDefault = false;
         }
     }
 }

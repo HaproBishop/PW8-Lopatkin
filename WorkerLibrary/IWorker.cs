@@ -11,6 +11,6 @@ namespace WorkerLibrary
         string SecondName { get; set; }
         int Hours { get; set; }
         int Salary { get; }
-        void PaySalary();
+        void PaySalary(int allsalary);
     }
 }

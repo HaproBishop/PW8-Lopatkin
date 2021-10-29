@@ -41,7 +41,7 @@ namespace WorkerLibrary
         }
         public virtual void PaySalary(int salary)
         {
-            Salary = _salary;
+            Salary = salary;
         }
     }
 }

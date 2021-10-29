@@ -13,7 +13,7 @@
                 <GradientStop Color="#FF9B0AFF" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Menu VerticalAlignment="Top" MinWidth="500">
+        <Menu VerticalAlignment="Top" MinWidth="500" Focusable="False">
             <MenuItem Header="Actions" Focusable="False">
                 <MenuItem Header="Save Data"/>
                 <MenuItem Header="Open Data File"/>
@@ -23,7 +23,41 @@
             <MenuItem Header="Exit" Click="Exit_Click" Focusable="False"/>
             <MenuItem Header="About Program" Click="AboutProgram_Click" Focusable="False"/>
         </Menu>
-        <DataGrid x:Name="Table" Margin="10,23,350,10" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300" IsReadOnly="True"/>
+        <DataGrid x:Name="Table" Margin="10,23,350,10" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300" IsReadOnly="True" Focusable="False"/>
+       
+        <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="348" Margin="0,23,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
+            <GroupBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#E28F65FF" Offset="1"/>
+                    <GradientStop Color="#B2B4ACFF"/>
+                </LinearGradientBrush>
+            </GroupBox.Background>
+            <Grid>
+                <Button x:Name="AddWorker" Content="Add Worker" HorizontalAlignment="Left" Margin="177,41,0,0" VerticalAlignment="Top" Width="112" Click="AddWorker_Click" Height="23" Focusable="False"/>
+                <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="SecondName_TextChanged" GotFocus="SecondName_GotFocus"/>
+                <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" GotFocus="SecondName_GotFocus"/>
+                <Label Content="Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Hours:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <GroupBox Header="Pay Salary" HorizontalAlignment="Left" Height="98" Margin="3,69,0,-54" VerticalAlignment="Top" Width="296" BorderBrush="#FF00FF0C">
+                    <Grid>
+                        <CheckBox x:Name="CheckSalary" Content="Salary Per Hour" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="112" ToolTip="If your worker have salary per hour then you must click here for activate oppotunity to add him"/>
+                        <Label Content="Salary/SalaryPerHour:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="AllSalary" HorizontalAlignment="Left" Height="23" Margin="139,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" MaxLength="8" GotFocus="AllSalary_GotFocus"/>
+                        <Button x:Name="Pay" Content="Pay" HorizontalAlignment="Left" Margin="139,38,0,0" VerticalAlignment="Top" Width="135" Click="Pay_Click" Focusable="False"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Compare Salary And Clone Worker" HorizontalAlignment="Left" Height="151" Margin="3,172,0,0" VerticalAlignment="Top" Width="296" BorderBrush="#FFF300FF">
+                    <Grid>
+                        <Label Content="Other Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="This string is used for compare se"/>
+                        <TextBox x:Name="OtherSecondName" HorizontalAlignment="Left" Height="23" Margin="141,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" TextChanged="OtherSecondName_TextChanged"/>
+                        <Button x:Name="CompareSalaries" Content="Compare Salaries" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="126" Click="CompareSalaries_Click"/>
+                        <Button x:Name="CloneWorkerInfo" Content="Clone Worker Info" HorizontalAlignment="Left" Margin="141,97,0,0" VerticalAlignment="Top" Width="133" Click="CloneWorkerInfo_Click"/>
+                        <Label Content="Worker With More Salary:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="148"/>
+                        <TextBox x:Name="WorkerWithMoreSalary" HorizontalAlignment="Left" Height="23" Margin="10,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" IsReadOnly="True" Focusable="False"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
         <GroupBox Header="Basic Oppotunities" HorizontalAlignment="Right" Height="62" Margin="0,376,10,0" VerticalAlignment="Top" Width="311">
             <GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -33,42 +67,8 @@
             </GroupBox.Background>
             <Grid>
                 <Button Content="Support" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78"/>
-                <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="64" IsCancel="True" Click="Exit_Click"/>
                 <Button x:Name="AboutProgram" Content="About Program" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="127" Click="AboutProgram_Click"/>
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="348" Margin="0,23,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
-            <GroupBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#E28F65FF" Offset="1"/>
-                    <GradientStop Color="#B2B4ACFF"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <Grid>
-                <Button x:Name="AddWorker" Content="Add Worker" HorizontalAlignment="Left" Margin="177,41,0,0" VerticalAlignment="Top" Width="112" Click="AddWorker_Click" Height="23"/>
-                <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-                <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"/>
-                <Label Content="Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="Hours:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <GroupBox Header="Pay Salary" HorizontalAlignment="Left" Height="98" Margin="3,69,0,-54" VerticalAlignment="Top" Width="296" BorderBrush="#FF00FF0C">
-                    <Grid>
-                        <TextBox x:Name="AllSalary" HorizontalAlignment="Left" Height="23" Margin="139,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" MaxLength="10"/>
-                        <Label Content="Salary/SalaryPerHour:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <CheckBox x:Name="CheckSalary" Content="Salary Per Hour" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="112" ToolTip="If your worker have salary per hour then you must click here for activate oppotunity to add him"/>
-                        <Button x:Name="Pay" Content="Pay" HorizontalAlignment="Left" Margin="139,38,0,0" VerticalAlignment="Top" Width="135" Click="Pay_Click"/>
-
-                    </Grid>
-                </GroupBox>
-                <GroupBox Header="Compare Salary And Clone Worker" HorizontalAlignment="Left" Height="151" Margin="3,172,0,0" VerticalAlignment="Top" Width="296" BorderBrush="#FFF300FF">
-                    <Grid>
-                        <Button x:Name="CompareSalaries" Content="Compare Salaries" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="126" Click="CompareSalaries_Click"/>
-                        <Button x:Name="CloneWorkerInfo" Content="Clone Worker Info" HorizontalAlignment="Left" Margin="141,97,0,0" VerticalAlignment="Top" Width="133" Click="CloneWorkerInfo_Click"/>
-                        <Label Content="Other Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="This string is used for compare se"/>
-                        <TextBox x:Name="OtherSecondName" HorizontalAlignment="Left" Height="23" Margin="141,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133"/>
-                        <TextBox x:Name="WorkerWithMoreSalary" HorizontalAlignment="Left" Height="23" Margin="10,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264" IsReadOnly="True"/>
-                        <Label Content="Worker With More Salary:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="148"/>
-                    </Grid>
-                </GroupBox>
+                <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="64" IsCancel="True" Click="Exit_Click"/>
             </Grid>
         </GroupBox>
     </Grid>
