@@ -101,7 +101,7 @@ namespace PrototypePW8
 
         private void CloneWorkerInfo_Click(object sender, RoutedEventArgs e)
         {
-            if ((OtherSecondName.Text != null) && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
+            if ((SecondName.Text != "") && (OtherSecondName.Text != "") && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
             {
                 TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                 WorkerSalaryScale cloneworkersalaryscale;
@@ -185,7 +185,7 @@ namespace PrototypePW8
 
         private void DeleteWorker_Click(object sender, RoutedEventArgs e)
         {
-            if ((SecondName.Text != null) && (TableForWorkers.ProveSecondName(SecondName.Text) == false))
+            if ((SecondName.Text != "") && TableForWorkers.ProveSecondName(SecondName.Text))
             {
                 TableForWorkers.DeleteWorker(SecondName.Text);
             }

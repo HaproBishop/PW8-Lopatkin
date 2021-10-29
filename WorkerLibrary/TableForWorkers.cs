@@ -77,6 +77,7 @@ namespace WorkerLibrary
                 row = res.Rows[i];
                 if ((string)row[1] == secondname) res.Rows[i].Delete();
             }
+            j--;
             return res;
         }
         public static DataTable UpdateWorker(string secondname, WorkerSalaryPerHour worker)

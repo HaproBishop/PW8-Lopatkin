@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PrototypePW8"
         mc:Ignorable="d"
-        Title="PW8" Height="482" Width="800" ResizeMode="CanResize" MinWidth="700" MinHeight="390">
+        Title="PW8" Height="482" Width="800" ResizeMode="CanResize" MinWidth="700" MinHeight="390" Icon="OneDrive.ico">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -26,7 +26,6 @@
             <MenuItem Header="Exit" Click="Exit_Click" Focusable="False"/>
         </Menu>
         <DataGrid x:Name="Table" Margin="10,23,350,10" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300" IsReadOnly="True" Focusable="False"/>
-
         <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="348" Margin="0,23,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
             <GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
