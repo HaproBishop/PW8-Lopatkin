@@ -35,8 +35,8 @@
             </GroupBox.Background>
             <Grid x:Name="___Без_имени_">
                 <Button x:Name="AddWorker" Content="Add" HorizontalAlignment="Left" Margin="175,41,0,0" VerticalAlignment="Top" Width="54" Click="AddWorker_Click" Height="23" Focusable="False"/>
-                <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="SecondName_TextChanged" GotFocus="SecondName_GotFocus"/>
-                <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" GotFocus="SecondName_GotFocus"/>
+                <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="SecondName_TextChanged" GotFocus="SecondName_GotFocus" MaxLength="20"/>
+                <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" GotFocus="SecondName_GotFocus" MaxLength="4"/>
                 <Button x:Name="DeleteWorker" Content="Delete" HorizontalAlignment="Left" Margin="235,41,0,0" VerticalAlignment="Top" Width="54" Height="23" Click="DeleteWorker_Click"/>
                 <Label Content="Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="Hours:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
@@ -51,7 +51,7 @@
                 <GroupBox Header="Compare Salary And Clone Worker" HorizontalAlignment="Left" Height="151" Margin="3,172,0,0" VerticalAlignment="Top" Width="296" BorderBrush="#FFF300FF">
                     <Grid>
                         <Label Content="Other Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ToolTip="This string is used for compare se"/>
-                        <TextBox x:Name="OtherSecondName" HorizontalAlignment="Left" Height="23" Margin="141,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" TextChanged="OtherSecondName_TextChanged"/>
+                        <TextBox x:Name="OtherSecondName" HorizontalAlignment="Left" Height="23" Margin="141,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" TextChanged="OtherSecondName_TextChanged" MaxLength="20"/>
                         <Button x:Name="CompareSalaries" Content="Compare Salaries" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Width="126" Click="CompareSalaries_Click"/>
                         <Button x:Name="CloneWorkerInfo" Content="Clone Worker Info" HorizontalAlignment="Left" Margin="141,97,0,0" VerticalAlignment="Top" Width="133" Click="CloneWorkerInfo_Click"/>
                         <Label Content="Worker With More Salary:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="148"/>

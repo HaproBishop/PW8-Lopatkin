@@ -180,7 +180,10 @@ namespace PrototypePW8
 
         private void Support_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("1) You can enter Second Name with length - 20\n2) You can enter Salary(SalaryPerHour) with length - 8, hours - 4\n3) " +
+                "You must enter new second name into string \"Other Second Name\" for clone data of other person\n4) " +
+                "If you want add person with salary per hour then you can stay \"check\" into checkbox\n5) " +
+                "All operations linked into tab \"Worker Control\"","Support", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void DeleteWorker_Click(object sender, RoutedEventArgs e)
