@@ -15,16 +15,18 @@
         </Grid.Background>
         <Menu VerticalAlignment="Top" MinWidth="500" Focusable="False">
             <MenuItem Header="Actions" Focusable="False">
-                <MenuItem Header="Save Data"/>
-                <MenuItem Header="Open Data File"/>
-                <MenuItem Header="Compare Data"/>
-                <MenuItem Header="Copy Data"/>
+                <MenuItem Header="Add Worker" Click="AddWorker_Click"/>
+                <MenuItem Header="Delete Worker" Click="DeleteWorker_Click"/>
+                <MenuItem Header="Pay" Click="Pay_Click"/>
+                <MenuItem Header="Compare Salaries" Click="CompareSalaries_Click"/>
+                <MenuItem Header="Clone Worker Info" Click="CloneWorkerInfo_Click"/>
             </MenuItem>
-            <MenuItem Header="Exit" Click="Exit_Click" Focusable="False"/>
+            <MenuItem Header="Supprort" Click="Support_Click" Focusable="False"/>
             <MenuItem Header="About Program" Click="AboutProgram_Click" Focusable="False"/>
+            <MenuItem Header="Exit" Click="Exit_Click" Focusable="False"/>
         </Menu>
         <DataGrid x:Name="Table" Margin="10,23,350,10" CanUserAddRows="False" Background="#B2F0F0F0" MinWidth="430" MinHeight="300" IsReadOnly="True" Focusable="False"/>
-       
+
         <GroupBox Header="Worker Control" HorizontalAlignment="Right" Height="348" Margin="0,23,10,0" VerticalAlignment="Top" Width="311" BorderBrush="Black">
             <GroupBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -32,10 +34,11 @@
                     <GradientStop Color="#B2B4ACFF"/>
                 </LinearGradientBrush>
             </GroupBox.Background>
-            <Grid>
-                <Button x:Name="AddWorker" Content="Add Worker" HorizontalAlignment="Left" Margin="177,41,0,0" VerticalAlignment="Top" Width="112" Click="AddWorker_Click" Height="23" Focusable="False"/>
+            <Grid x:Name="___Без_имени_">
+                <Button x:Name="AddWorker" Content="Add" HorizontalAlignment="Left" Margin="175,41,0,0" VerticalAlignment="Top" Width="54" Click="AddWorker_Click" Height="23" Focusable="False"/>
                 <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="SecondName_TextChanged" GotFocus="SecondName_GotFocus"/>
                 <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" GotFocus="SecondName_GotFocus"/>
+                <Button x:Name="DeleteWorker" Content="Delete" HorizontalAlignment="Left" Margin="235,41,0,0" VerticalAlignment="Top" Width="54" Height="23" Click="DeleteWorker_Click"/>
                 <Label Content="Second Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="Hours:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                 <GroupBox Header="Pay Salary" HorizontalAlignment="Left" Height="98" Margin="3,69,0,-54" VerticalAlignment="Top" Width="296" BorderBrush="#FF00FF0C">
@@ -66,7 +69,7 @@
                 </LinearGradientBrush>
             </GroupBox.Background>
             <Grid>
-                <Button Content="Support" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78"/>
+                <Button x:Name="Support" Content="Support" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="78" Click="Support_Click"/>
                 <Button x:Name="AboutProgram" Content="About Program" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="127" Click="AboutProgram_Click"/>
                 <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="64" IsCancel="True" Click="Exit_Click"/>
             </Grid>

@@ -37,7 +37,7 @@ namespace PrototypePW8
         {
             MessageBox.Show("Практическая работа №8. Задание 8. Создать интерфейс – работник. Создать классы - служащий с почасовой оплатой, служащий с окладом.Классы должны включать конструкторы, функцию для формирования строки информации о работнике.Определить функцию начисления зарплаты.Сравнение производить по фамилии.", "About Program", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        
+
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
         {
@@ -58,8 +58,7 @@ namespace PrototypePW8
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryscale).DefaultView;
                     }
                     workersalaryscale = new WorkerSalaryScale();
-
-                }                
+                }
             }
             else MessageForUser();
         }
@@ -97,7 +96,7 @@ namespace PrototypePW8
                 }
                 WorkerWithMoreSalary.Text = answer;
             }
-            else MessageBox.Show("Second Names can not be equal!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            else MessageForUserAboutSecondNames();
         }
 
         private void CloneWorkerInfo_Click(object sender, RoutedEventArgs e)
@@ -148,7 +147,7 @@ namespace PrototypePW8
         private string CompareResults(int result, string secondname, string othersecondname, int salary, int othersalary)
         {
             if (result == 1) return $"{secondname} have more salary - {salary}";
-            if(result == -1) return $"{othersecondname} have more salary - {othersalary}";
+            if (result == -1) return $"{othersecondname} have more salary - {othersalary}";
             return $"Salaries of {secondname} and {othersecondname} are equal - {salary}";
         }
 
@@ -168,7 +167,7 @@ namespace PrototypePW8
         }
 
         private void SecondName_GotFocus(object sender, RoutedEventArgs e)
-        {            
+        {
             Pay.IsDefault = false;
             AddWorker.IsDefault = true;
         }
@@ -177,6 +176,24 @@ namespace PrototypePW8
         {
             Pay.IsDefault = true;
             AddWorker.IsDefault = false;
+        }
+
+        private void Support_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteWorker_Click(object sender, RoutedEventArgs e)
+        {
+            if ((SecondName.Text != null) && (TableForWorkers.ProveSecondName(SecondName.Text) == false))
+            {
+                TableForWorkers.DeleteWorker(SecondName.Text);
+            }
+            else MessageForUserAboutSecondNames();
+        }
+        private void MessageForUserAboutSecondNames()
+        {
+            MessageBox.Show("Second Names can not be equal!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
