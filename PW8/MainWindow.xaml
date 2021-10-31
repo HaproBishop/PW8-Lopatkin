@@ -33,7 +33,7 @@
                     <GradientStop Color="#B2B4ACFF"/>
                 </LinearGradientBrush>
             </GroupBox.Background>
-            <Grid x:Name="___Без_имени_">
+            <Grid>
                 <Button x:Name="AddWorker" Content="Add" HorizontalAlignment="Left" Margin="175,41,0,0" VerticalAlignment="Top" Width="54" Click="AddWorker_Click" Height="23" Focusable="False"/>
                 <TextBox x:Name="SecondName" HorizontalAlignment="Left" Height="23" Margin="134,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" TextChanged="SecondName_TextChanged" GotFocus="SecondName_GotFocus" MaxLength="20"/>
                 <TextBox x:Name="Hours" HorizontalAlignment="Left" Height="23" Margin="134,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" GotFocus="SecondName_GotFocus" MaxLength="4"/>

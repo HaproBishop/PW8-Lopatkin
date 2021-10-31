@@ -71,8 +71,8 @@ namespace PrototypePW8
                 string answer;
                 WorkerSalaryScale otherworkersalaryscale = new WorkerSalaryScale();
                 WorkerSalaryPerHour otherworkersalaryperhour = new WorkerSalaryPerHour(); ;
-                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);//Получение информации из таблицы в объект
-                TableForWorkers.GiveWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);//Для второго объекта на сравнение
+                TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);//Получение информации из таблицы в объект
+                TableForWorkers.GetWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);//Для второго объекта на сравнение
                 if (SecondName.Text == workersalaryperhour.SecondName)//Сопоставление текущего имени с добавленным в объект
                     if (OtherSecondName.Text == otherworkersalaryperhour.SecondName)
                     {
@@ -103,7 +103,7 @@ namespace PrototypePW8
         {
             if ((SecondName.Text != "") && (OtherSecondName.Text != "") && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
             {//Проверка на наличие пустых полей и другого имени в таблице
-                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                 WorkerSalaryScale cloneworkersalaryscale;
                 WorkerSalaryPerHour cloneworkersalaryperhour;
                 if (workersalaryscale.SecondName == SecondName.Text)//Сравнение для правильного приведения
@@ -128,7 +128,7 @@ namespace PrototypePW8
             {
                 if (TableForWorkers.ProveSecondName(SecondName.Text))
                 {
-                    TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                    TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                     if (workersalaryscale.SecondName == SecondName.Text)//Проверка для правильного ориентира класса
                     {
                         workersalaryscale.PaySalary(value);

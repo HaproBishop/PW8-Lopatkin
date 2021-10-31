@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WorkerLibrary
-{
+{/// <summary>
+/// Класс для создания объекта и информацией работника (Фамилия, Часы, Зарплата(расчет по часам), Зарплата в час)
+/// </summary>
     public class WorkerSalaryPerHour : WorkerSalaryScale
     {        
         private int _salaryperhour;
