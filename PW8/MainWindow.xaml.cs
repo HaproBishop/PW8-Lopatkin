@@ -44,20 +44,21 @@ namespace PrototypePW8
             bool ProveHours = int.TryParse(Hours.Text, out int hours);
             if (ProveHours)//Использована упрощенная запись для проверки значения bool(true - двигаемся дальше по коду)
             {
-                if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (TableForWorkers.ProveSecondName(SecondName.Text)) MessageBox.Show("Worker is had into the table", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
                     if (CheckSalary.IsChecked == true)
                     {
-                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours);//Использование метода для заполнения полей значениями
+                        workersalaryperhour = new WorkerSalaryPerHour();
+                        workersalaryperhour.AddWorkerInformation(SecondName.Text, hours);//Использование метода для заполнения полей значениями                        
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryperhour).DefaultView;//Занесение информации о работнике в таблицу
                     }
                     else
                     {
-                        workersalaryscale.AddWorkerInformation(SecondName.Text, hours);
+                        workersalaryscale = new WorkerSalaryScale();
+                        workersalaryscale.AddWorkerInformation(SecondName.Text, hours);                        
                         Table.ItemsSource = TableForWorkers.AddWorker(workersalaryscale).DefaultView;
-                    }
-                    workersalaryscale = new WorkerSalaryScale();
+                    }                    
                 }
             }
             else MessageForUser();
@@ -71,8 +72,8 @@ namespace PrototypePW8
                 string answer;
                 WorkerSalaryScale otherworkersalaryscale = new WorkerSalaryScale();
                 WorkerSalaryPerHour otherworkersalaryperhour = new WorkerSalaryPerHour(); ;
-                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);//Получение информации из таблицы в объект
-                TableForWorkers.GiveWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);//Для второго объекта на сравнение
+                TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);//Получение информации из таблицы в объект
+                TableForWorkers.GetWorkerInfo(OtherSecondName.Text, ref otherworkersalaryperhour, ref otherworkersalaryscale);//Для второго объекта на сравнение
                 if (SecondName.Text == workersalaryperhour.SecondName)//Сопоставление текущего имени с добавленным в объект
                     if (OtherSecondName.Text == otherworkersalaryperhour.SecondName)
                     {
@@ -103,7 +104,7 @@ namespace PrototypePW8
         {
             if ((SecondName.Text != "") && (OtherSecondName.Text != "") && (TableForWorkers.ProveSecondName(OtherSecondName.Text) == false))
             {//Проверка на наличие пустых полей и другого имени в таблице
-                TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                 WorkerSalaryScale cloneworkersalaryscale;
                 WorkerSalaryPerHour cloneworkersalaryperhour;
                 if (workersalaryscale.SecondName == SecondName.Text)//Сравнение для правильного приведения
@@ -128,7 +129,7 @@ namespace PrototypePW8
             {
                 if (TableForWorkers.ProveSecondName(SecondName.Text))
                 {
-                    TableForWorkers.GiveWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
+                    TableForWorkers.GetWorkerInfo(SecondName.Text, ref workersalaryperhour, ref workersalaryscale);
                     if (workersalaryscale.SecondName == SecondName.Text)//Проверка для правильного ориентира класса
                     {
                         workersalaryscale.PaySalary(value);
@@ -161,8 +162,7 @@ namespace PrototypePW8
         }
 
         private void SecondName_TextChanged(object sender, TextChangedEventArgs e)
-        {//Для очистки значений при изменении начальных значений
-            Hours.Clear();
+        {//Для очистки значений при изменении начальных значений            
             WorkerWithMoreSalary.Clear();
         }
 
@@ -192,7 +192,7 @@ namespace PrototypePW8
             MessageBox.Show("1) You can enter Second Name with length - 20\n2) You can enter Salary(SalaryPerHour) with length - 8, hours - 4\n3) " +
                 "You must enter new second name into string \"Other Second Name\" for clone data of other person\n4) " +
                 "If you want add person with salary per hour then you can stay \"check\" into checkbox\n5) " +
-                "All operations linked into tab \"Worker Control\"","Support", MessageBoxButton.OK, MessageBoxImage.Error);
+                "All operations linked into tab \"Worker Control\"","Support", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void DeleteWorker_Click(object sender, RoutedEventArgs e)
