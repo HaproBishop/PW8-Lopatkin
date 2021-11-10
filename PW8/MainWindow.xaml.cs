@@ -155,8 +155,8 @@ namespace PrototypePW8
         /// <returns>Строка с результатом</returns>
         private string CompareResults(int result, string secondname, string othersecondname, int salary, int othersalary)
         {
-            if (result == 1) return $"{secondname} have more salary - {salary}";
-            if (result == -1) return $"{othersecondname} have more salary - {othersalary}";
+            if (result > 0) return $"{secondname} have more salary - {salary}";
+            if (result < 0) return $"{othersecondname} have more salary - {othersalary}";
             return $"Salaries of {secondname} and {othersecondname} are equal - {salary}";
         }
 

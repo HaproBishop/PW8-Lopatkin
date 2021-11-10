@@ -11,7 +11,7 @@ namespace WorkerLibrary
         int _hours, _salary;
         public string SecondName { get; set; }
         public int Hours { get => _hours; set => _hours = ProveValue(value) ? value : throw new Exception("Ошибка! Введено некорректно значение!"); }
-        public virtual int Salary { get => _salary; set => _salary = ProveValue(value) ? value : throw new Exception("Ошибка! Введено некорректно значение!"); }
+        public int Salary { get => _salary; set => _salary = ProveValue(value) ? value : throw new Exception("Ошибка! Введено некорректно значение!"); }
         public WorkerSalaryScale() { }
         public WorkerSalaryScale(string secondname, int hours, int salary)
         {
@@ -19,7 +19,8 @@ namespace WorkerLibrary
             Hours = hours;
             Salary = salary;
         }
-        private protected bool ProveValue(int value)
+
+        private bool ProveValue(int value)
         {
             return value >= 0;
         }
@@ -30,16 +31,14 @@ namespace WorkerLibrary
         }
         public int CompareTo(object obj)
         {
-            var twoworker = (WorkerSalaryScale)obj;
-            if (Salary > twoworker.Salary) return 1;
-            if (Salary < twoworker.Salary) return -1;
-            return 0;
+            WorkerSalaryScale worker = (WorkerSalaryScale)obj;
+            return Salary - worker.Salary;
         }
-        public virtual object Clone()
+        public object Clone()
         {
-            return new WorkerSalaryScale(SecondName, Hours, Salary);
+            return MemberwiseClone();
         }
-        public virtual void PaySalary(int salary)
+        public void PaySalary(int salary)
         {
             Salary = salary;
         }

@@ -41,8 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICloneable.cs" />
-    <Compile Include="IComparable.cs" />
     <Compile Include="TableForWorkers.cs" />
     <Compile Include="WorkerSalaryPerHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

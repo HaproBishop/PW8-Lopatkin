@@ -116,7 +116,7 @@ namespace WorkerLibrary
                     news[2] = row[2];
                     news[3] = row[3];
                     news[4] = row[4];
-                    res.Rows[i].ItemArray = news;     //Изменяем значения в строке               
+                    res.Rows[i].ItemArray = news;//Изменяем значения в строке               
                 }
             }
             return res;
